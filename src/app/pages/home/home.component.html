@@ -1,0 +1,8 @@
+<div class="home">
+  <mat-spinner *ngIf="loading$ | async" class="spinner" [diameter]="50"></mat-spinner>
+  <ng-container *ngIf="stories$ | async as stories">
+    <div *ngFor="let story of stories; let index=index" class="story">
+      <app-story [story]="story" [id]="index"></app-story>
+    </div>
+  </ng-container>
+</div>

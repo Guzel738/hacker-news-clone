@@ -1,0 +1,42 @@
+<div class="comments">
+  <mat-spinner *ngIf="loading$ | async" class="spinner" [diameter]="50"></mat-spinner>
+  <div *ngIf="story$ | async as story">
+    <mat-icon class="navigate-before-icon" fontIcon="navigate_before" (click)="goBack()"></mat-icon>
+    <div class="story">
+      <app-story [story]="story"></app-story>
+      <div class="story-text" [innerHTML]="story.text"></div>
+    </div>
+    <mat-tree #tree [dataSource]="dataSource" [treeControl]="treeControl" class="comments-tree">
+      <ng-container *matTreeNodeDef="let node">
+        <ng-container *ngIf="node.text">
+          <mat-tree-node matTreeNodeToggle>
+            <div class="node-container">
+              <div class="node-author">{{node.author}}</div>
+              <div [innerHTML]="node.text"></div>
+            </div>
+          </mat-tree-node>
+        </ng-container>
+      </ng-container>
+      <ng-container *matTreeNodeDef="let node; when: hasChild">
+        <ng-container *ngIf="node.text">
+          <mat-nested-tree-node>
+            <div class="mat-tree-node">
+              <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'Toggle ' + node.text">
+                <mat-icon class="mat-icon-rtl-mirror">
+                  {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+                </mat-icon>
+              </button>
+              <div class="node-container">
+                <div class="node-author">{{node.author}}</div>
+                <div [innerHTML]="node.text"></div>
+              </div>
+            </div>
+            <div [class.comments-tree-invisible]="!treeControl.isExpanded(node)" role="group">
+              <ng-container matTreeNodeOutlet></ng-container>
+            </div>
+          </mat-nested-tree-node>
+        </ng-container>
+      </ng-container>
+    </mat-tree>
+  </div>
+</div>

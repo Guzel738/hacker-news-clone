@@ -1,0 +1,11 @@
+.home {
+  min-height: 100vh;
+
+  .story {
+    border-bottom: 1px solid #dee1ec;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+}

@@ -1,1 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  margin: 20px 30px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+
+  .spinner {
+    margin: auto;
+    margin-top: 20px;
+  }
+
+  .mat-spinner circle {
+    stroke: #f3a953;
+  }
+
+  a {
+    text-decoration: none;
+    color: #000;
+  }
+}

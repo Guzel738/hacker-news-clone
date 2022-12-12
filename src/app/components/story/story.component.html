@@ -1,0 +1,20 @@
+<div class="story-container">
+  <div class="story-title--container">
+    <span *ngIf="id">{{id + 1}}.</span>
+    <a class="story-title" [href]="story.url">{{story.title}}</a>
+  </div>
+  <div class="story-description">
+    <div class="story-section story-points">
+      <mat-icon class="story-icon" fontIcon="star"></mat-icon>
+      <div>{{story.points}}</div>
+    </div>
+    <div class="story-section story-author">
+      <mat-icon class="story-icon" fontIcon="person"></mat-icon>
+      <div>{{story.author}}</div>
+    </div>
+    <div *ngIf="story.num_comments" class="story-section story-comments" [routerLink]="['/comments', story.objectID]">
+      <mat-icon class="story-icon" fontIcon="comment"></mat-icon>
+      <div>{{story.num_comments}}</div>
+    </div>
+  </div>
+</div>
